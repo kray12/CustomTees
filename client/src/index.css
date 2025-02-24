@@ -1,0 +1,427 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,600;1,900&display=swap");
+@import url("https://rsms.me/inter/inter.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: "Inter", sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+
+.app {
+  @apply relative w-full h-screen overflow-hidden;
+}
+
+.home {
+  @apply w-fit xl:h-full flex xl:justify-between justify-start items-start 
+  flex-col xl:py-8 xl:px-36 sm:p-8 p-6 max-xl:gap-7 
+  absolute z-10 bg-[#000000]/90 backdrop-blur-sm transition-all duration-700;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.home-content {
+  @apply flex-1 xl:justify-center justify-start flex flex-col gap-10;
+}
+
+.head-text {
+  @apply xl:text-[10rem] text-[6rem] xl:leading-[11rem] leading-[7rem] 
+  font-black text-[#FFFFFF];
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Glass effect base styles */
+.glass-effect {
+  @apply bg-white/15 backdrop-blur-md border border-white/20 shadow-lg;
+}
+
+/* Download button */
+.download-btn {
+  @apply relative w-14 h-14 flex justify-center items-center rounded-full 
+  bg-white/20 backdrop-blur-md border border-white/20 
+  hover:bg-white/30 transition-all duration-200 shadow-lg
+  cursor-pointer;
+}
+
+/* Editor tabs container */
+.editortabs-container {
+  @apply w-16 border-[2px] rounded-lg flex flex-col justify-center items-center ml-1 py-4 gap-4
+  bg-white/20 backdrop-blur-md border-white/20 shadow-lg;
+}
+
+/* AI Picker container */
+.aipicker-container {
+  @apply w-[195px] h-[220px] flex flex-col gap-4;
+}
+
+/* File picker container */
+.filepicker-container {
+  @apply w-[195px] h-[220px] flex flex-col gap-4;
+}
+
+/* Color picker container */
+.colorpicker-container {
+  @apply flex flex-col gap-4;
+}
+
+/* Tab content */
+.tab-content {
+  @apply bg-white/20 backdrop-blur-md border border-white/20 rounded-md p-3 shadow-lg;
+}
+
+/* Input and textarea styles */
+.aipicker-textarea,
+.filepicker-input {
+  @apply w-full bg-white/10 backdrop-blur-md border border-white/20 
+  rounded-md p-2 text-white placeholder-white/50
+  focus:outline-none focus:border-white/40 transition-colors;
+}
+
+/* Button styles in editor */
+.edit-button {
+  @apply px-4 py-2 bg-white/20 backdrop-blur-md border border-white/20 
+  rounded-md text-white hover:bg-white/30 transition-colors
+  focus:outline-none focus:border-white/40;
+}
+
+/* Hover effects */
+.download-btn:hover,
+.editortabs-container:hover,
+.aipicker-container:hover,
+.filepicker-container:hover,
+.colorpicker-container:hover {
+  @apply border-white/40 bg-white/30 shadow-xl;
+}
+
+/* Active state for buttons */
+.download-btn:active {
+  @apply scale-95;
+}
+
+/* Color picker customization */
+.sketch-picker {
+  @apply !bg-white/20 !backdrop-blur-md !border !border-white/20 !shadow-lg;
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+.sketch-picker input {
+  @apply !bg-white/10 !text-white !border !border-white/20;
+}
+
+/* Additional helper classes */
+.glass-panel {
+  @apply bg-white/20 backdrop-blur-md border border-white/20 
+  rounded-lg shadow-lg hover:bg-white/30 transition-all duration-300;
+}
+
+.glass-input {
+  @apply bg-white/10 border border-white/20 rounded-md p-2
+  text-white placeholder-white/50 focus:outline-none 
+  focus:border-white/40 transition-colors;
+}
+
+/* Animation for gradient backgrounds */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.filtertabs-container {
+  @apply absolute z-10 bottom-5 right-0 left-0 w-full flex justify-center items-center flex-wrap gap-4;
+}
+
+.filepicker-label {
+  cursor: pointer;
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.filepicker-label:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+#file-upload {
+  display: none;
+}
+
+.tab-btn {
+  @apply w-14 h-14 flex justify-center items-center cursor-pointer
+  bg-[#000000]/90 backdrop-blur-sm rounded-lg;
+}
+
+.tab-btn:hover {
+  @apply bg-[#1a1a1a]/90;
+}
+
+.editortabs-container .tab-content {
+  @apply bg-[#000000]/90 backdrop-blur-sm text-[#FFFFFF];
+}
+
+.filepicker-container input,
+.aipicker-container textarea {
+  @apply bg-[#1a1a1a]/90 text-[#FFFFFF] border border-[#FFFFFF]/30 
+  focus:border-[#FFFFFF]/60 outline-none;
+}
+
+.filepicker-label,
+.aipicker-container p {
+  @apply text-[#FFFFFF]/80;
+}
+
+.canvas-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* When in intro mode (beside text) */
+.canvas-container.absolute {
+  position: absolute;
+  top: 30%;  /* Center vertically */
+  right: 5%;  /* Add some padding from right edge */
+  transform: translateY(-50%);  /* Perfect vertical centering */
+  width: 30vw;
+  height: 90vh;
+  z-index: 1;
+}
+
+/* When in customizer mode (full screen) */
+.canvas-container.w-full {
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+}
+
+/* Ensure canvas itself fills its container */
+.canvas-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.product-item {
+  transition: all 0.3s ease;
+}
+
+.product-item:hover {
+  transform: scale(1.05);
+}
+
+.nav-links a {
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  opacity: 0.8;
+}
+
+.actions button {
+  transition: all 0.3s ease;
+}
+
+.actions button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Hover effects for interactive elements */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Glass effect for cards */
+.glass-card {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Floating Blur Elements */
+.floating-blur-1,
+.floating-blur-2,
+.floating-blur-3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.5;
+  animation: float 20s infinite;
+}
+
+.floating-blur-1 {
+  width: 500px;
+  height: 500px;
+  background: #5E90C6;
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.floating-blur-2 {
+  width: 600px;
+  height: 600px;
+  background: #8A5C66;
+  bottom: -150px;
+  right: -150px;
+  animation-delay: -5s;
+}
+
+.floating-blur-3 {
+  width: 400px;
+  height: 400px;
+  background: #152579;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: -10s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(50px, 50px);
+  }
+  50% {
+    transform: translate(0, 100px);
+  }
+  75% {
+    transform: translate(-50px, 50px);
+  }
+}
+
+/* Glow Effect for 3D Model */
+.glow-effect {
+  position: relative;
+}
+
+.glow-effect::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle at center, rgba(94, 144, 198, 0.2), transparent 70%);
+  filter: blur(20px);
+  z-index: -1;
+}
+
+/* Card Hover Effects */
+.product-card,
+.feature-card,
+.recent-card {
+  transform: translateY(0);
+  transition: all 0.3s ease;
+}
+
+.product-card:hover,
+.feature-card:hover,
+.recent-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Add these styles */
+.filepicker-container canvas {
+  max-width: 100%;
+  margin-top: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Update button styles */
+.custom-button {
+  @apply px-4 py-2.5 flex-1 rounded-md;
+}
+
+.custom-button[type="filled"] {
+  @apply bg-[#FFFFFF] text-[#000000] font-bold shadow-md 
+  hover:bg-[#f0f0f0] transition-colors;
+}
+
+.custom-button[type="outline"] {
+  @apply border border-[#FFFFFF]/50 text-[#FFFFFF] 
+  hover:bg-[#FFFFFF]/10 transition-colors;
+}
+
+/* Common positioning for all tool panels */
+.tool-panel {
+  @apply absolute left-full ml-3 top-0 p-3 rounded-md
+  bg-white/20 backdrop-blur-md border border-white/20 shadow-lg;
+}
+
+/* Tab panel positioning */
+.tab-panel {
+  position: fixed;
+  left: calc(4rem + 20px); /* Width of editortabs-container + some spacing */
+  top: 100px; /* Adjust this value to match your desired height */
+}
+
+/* Download buttons styling */
+.download-options {
+  @apply flex gap-3 bg-white/10 backdrop-blur-sm p-3 rounded-lg;
+}
+
+.download-btn:hover .tooltip {
+  @apply opacity-100 visible;
+}
+
+.tooltip {
+  @apply absolute -top-8 left-1/2 -translate-x-1/2 
+  bg-black/80 text-white px-2 py-1 rounded text-sm
+  opacity-0 invisible transition-all duration-200;
+}
+
+.tooltip:after {
+  content: '';
+  @apply absolute top-full left-1/2 -translate-x-1/2
+  border-4 border-transparent border-t-black/80;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
