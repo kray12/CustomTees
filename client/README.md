@@ -1,8 +1,19 @@
-# React + Vite
+# CustomTees - 3D T-Shirt Customization Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web application that allows users to customize t-shirts in 3D. Users can:
+- Change t-shirt colors
+- Add custom logos and textures
+- Upload their own images
+- Use AI to generate designs
+- Download their customized t-shirt designs
 
-Currently, two official plugins are available:
+## Technologies Used
+- React.js
+- Three.js
+- Framer Motion
+- Redux
+- Fabric.js
+- Tailwind CSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live Demo
+[Visit CustomTees](https://kray12.github.io/CustomTees)
