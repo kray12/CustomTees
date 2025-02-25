@@ -7,7 +7,7 @@ import { selectColor, selectIsFullTexture, selectIsLogoTexture, selectLogoDecal,
 
 const Shirt = () => {
   const meshRef = useRef();
-  const { nodes, materials } = useGLTF('./shirt_baked.glb');
+  const { nodes, materials } = useGLTF('/CustomTees/shirt_baked.glb');
 
   // Get states from Redux
   const color = useSelector(selectColor);
