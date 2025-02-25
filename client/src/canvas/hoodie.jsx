@@ -7,7 +7,7 @@ import { selectColor, selectIsFullTexture, selectIsLogoTexture, selectLogoDecal,
 
 const Hoodie = () => {
   const meshRef = useRef();
-  const { nodes, materials } = useGLTF('/CustomTees/hoodie.glb');
+  const { nodes, materials } = useGLTF('hoodie.glb');
 
   // Debug log to see the model structure
   useEffect(() => {
@@ -78,6 +78,6 @@ const Hoodie = () => {
 };
 
 // Preload the model
-useGLTF.preload('/CustomTees/hoodie.glb');
+useGLTF.preload('hoodie.glb');
 
 export default Hoodie;
