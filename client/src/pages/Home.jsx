@@ -232,21 +232,11 @@ function Home() {
 
           {/* Navigation */}
           <nav className="absolute top-0 left-0 w-full p-4 flex justify-between items-center">
-            <div className="logo text-2xl font-bold text-white">Dextolis</div>
-            <div className="nav-links flex space-x-8 text-white">
-              <a href="#" className="border-b-2 border-white">RURE</a>
-              <a href="#">RBUNTS</a>
-              <a href="#">MONCH</a>
-              <a href="#">MUHKS</a>
+            <div className="logo text-2xl font-bold">
               <a href="#">OORE</a>
             </div>
             <div className="actions flex space-x-4">
-              <button className="bg-white/20 p-2 rounded-lg">
-                <img src="/copy.png" alt="Copy" className="w-6 h-6" />
-              </button>
-              <button className="bg-white/20 p-2 rounded-lg">
-                <img src="/share.png" alt="Share" className="w-6 h-6" />
-              </button>
+              {/* Removed copy and share buttons */}
             </div>
           </nav>
         </motion.section>
