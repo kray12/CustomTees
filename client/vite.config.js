@@ -8,4 +8,14 @@ export default defineConfig({
   css: {
     postcss: './postcss.config.js',
   },
+  assetsInclude: ['**/*.glb'],  // Ensure GLB files are handled as assets
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name][extname]'
+      }
+    }
+  }
 });
