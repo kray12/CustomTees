@@ -58,12 +58,35 @@ html {
 
 /* AI Picker container */
 .aipicker-container {
-  @apply w-[195px] h-[220px] flex flex-col gap-4;
+  @apply flex flex-col gap-4;
+/* Example CSS for the hoodie container */
+.hoodie-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .hoodie-container {
+    width: 90%;
+    height: auto;
+  }
+}
+
+/* Hover effects */
+.hoodie-container:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}}
 
 /* File picker container */
 .filepicker-container {
-  @apply w-[195px] h-[220px] flex flex-col gap-4;
+  @apply flex flex-col gap-4;
 }
 
 /* Color picker container */

@@ -105,12 +105,14 @@ function Home() {
                     damping: 20,
                     stiffness: 100
                   }}
-                >
-                  <img src={`/${item.toLowerCase()}-blue.png`} alt={item} className="w-20 h-20 object-contain mb-4" />
-                  <div className="text-sm">
-                    <p>{item}</p>
-                    <p className="text-gray-500">$22.05</p>
-                  </div>
+                >         
+                  <img 
+                    src={index === 0 ? './newnew.png' : './newtoo.png'} 
+                    alt={item} 
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <h3 className="text-2xl font-bold text-white mb-2">{item}</h3>
+                  <p className="text-white/80">Customize your perfect {item.toLowerCase()}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -158,7 +160,7 @@ function Home() {
                     transition: { duration: 0.3, ease: "easeOut" }
                   }}
                 >
-                  <Canvas
+               <Canvas
                     camera={{ 
                       position: [1.15, 0, 2.2],
                       fov: 30
@@ -223,8 +225,8 @@ function Home() {
               >
                 <p>RECENT</p>
                 <div className="flex space-x-2 mt-2">
-                  <img src="/shirt-blue.png" alt="Recent" className="w-16 h-16 object-contain bg-white rounded-lg" />
-                  <img src="/hoodie-blue.png" alt="Recent" className="w-16 h-16 object-contain bg-white rounded-lg" />
+                  <img src="./shirt-blue.png" alt="Recent" className="w-16 h-16 object-contain bg-white rounded-lg" />
+                  <img src="./hoodie-blue.png" alt="Recent" className="w-16 h-16 object-contain bg-white rounded-lg" />
                 </div>
               </motion.div>
             </motion.div>

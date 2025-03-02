@@ -1,63 +1,97 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { easing } from 'maath';
 import { useFrame } from '@react-three/fiber';
 import { Decal, useGLTF, useTexture } from '@react-three/drei';
 import { useSelector } from 'react-redux';
-import { selectColor, selectIsFullTexture, selectIsLogoTexture, selectLogoDecal, selectFullDecal } from '../store';
+import { 
+  selectColor, 
+  selectIsFullTexture, 
+  selectIsLogoTexture, 
+  selectLogoDecal, 
+  selectFullDecal,
+  selectTextureScale,
+  selectTexturePosition,
+  selectClipMask
+} from '../store';
 
 const Shirt = () => {
-  const meshRef = useRef();
-  const { nodes, materials } = useGLTF('./shirt_baked.glb');
-
-  // Get states from Redux
+  const [meshGeometry, setMeshGeometry] = useState(null);
   const color = useSelector(selectColor);
   const isFullTexture = useSelector(selectIsFullTexture);
   const isLogoTexture = useSelector(selectIsLogoTexture);
   const logoDecal = useSelector(selectLogoDecal);
   const fullDecal = useSelector(selectFullDecal);
+  const textureScale = useSelector(selectTextureScale);
+  const texturePosition = useSelector(selectTexturePosition);
+  const clipMask = useSelector(selectClipMask);
 
-  // Load textures
+  const { nodes, materials } = useGLTF('./models/shirt_baked.glb');
+
+  useEffect(() => {
+    if (!nodes) return;
+    // Find the first mesh geometry in the nodes
+    const shirtGeometry = Object.values(nodes).find(node => node.geometry)?.geometry;
+    if (shirtGeometry) {
+      setMeshGeometry(shirtGeometry);
+    }
+  }, [nodes]);
+
   const logoTexture = useTexture(logoDecal);
   const fullTexture = useTexture(fullDecal);
 
-  // Handle color change
+  // Apply clipping to textures
+  if (clipMask.enabled) {
+    [logoTexture, fullTexture].forEach(texture => {
+      if (texture) {
+        texture.userData = {
+          ...texture.userData,
+          clipMask: clipMask.enabled,
+          clipIntensity: clipMask.intensity
+        };
+      }
+    });
+  }
+
   useFrame((state, delta) => {
-    if (meshRef.current) {
+    if (materials?.lambert1) {
       easing.dampC(materials.lambert1.color, color, 0.25, delta);
     }
   });
 
-  // Log state for debugging
-  console.log('Shirt State:', {
-    Logo: isLogoTexture,
-    Full: isFullTexture,
-    Color: color
-  });
+  if (!meshGeometry) return null;
 
   return (
     <group>
       <mesh
-        ref={meshRef}
         castShadow
-        geometry={nodes.T_Shirt_male.geometry}
+        geometry={meshGeometry}
         material={materials.lambert1}
         material-roughness={1}
         dispose={null}
       >
-        {isFullTexture && (
+        {isFullTexture && fullTexture && (
           <Decal 
             position={[0, 0, 0]}
             rotation={[0, 0, 0]}
-            scale={1}
+            scale={textureScale.full}
             map={fullTexture}
+            mapAnisotropy={16}
+            depthTest={false}
+            depthWrite={true}
           />
         )}
-        {isLogoTexture && (
+
+        {isLogoTexture && logoTexture && (
           <Decal 
-            position={[0, 0.04, 0.15]}
+            position={[
+              texturePosition.logo.x,
+              texturePosition.logo.y,
+              0.15
+            ]}
             rotation={[0, 0, 0]}
-            scale={0.15}
+            scale={textureScale.logo}
             map={logoTexture}
+            mapAnisotropy={16}
             depthTest={false}
             depthWrite={true}
           />
@@ -66,5 +100,8 @@ const Shirt = () => {
     </group>
   );
 };
+
+// Preload the model
+useGLTF.preload('./models/shirt_baked.glb');
 
 export default Shirt;

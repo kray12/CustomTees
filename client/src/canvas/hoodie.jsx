@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { easing } from 'maath';
 import { useFrame } from '@react-three/fiber';
 import { Decal, useGLTF, useTexture } from '@react-three/drei';
@@ -7,12 +7,7 @@ import { selectColor, selectIsFullTexture, selectIsLogoTexture, selectLogoDecal,
 
 const Hoodie = () => {
   const meshRef = useRef();
-  const { nodes, materials } = useGLTF('./hoodie.glb');
-
-  // Debug log to see the model structure
-  useEffect(() => {
-    console.log('Hoodie Model:', { nodes, materials });
-  }, [nodes, materials]);
+  const { nodes, materials } = useGLTF('./models/puddie.glb');
 
   // Get states from Redux
   const color = useSelector(selectColor);
@@ -28,7 +23,6 @@ const Hoodie = () => {
   // Handle color change
   useFrame((state, delta) => {
     if (meshRef.current && materials) {
-      // Get the first material if default doesn't exist
       const material = Object.values(materials)[0];
       if (material) {
         easing.dampC(material.color, color, 0.25, delta);
@@ -78,6 +72,6 @@ const Hoodie = () => {
 };
 
 // Preload the model
-useGLTF.preload('./hoodie.glb');
+useGLTF.preload('./models/puddie.glb');
 
 export default Hoodie;
